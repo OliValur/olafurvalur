@@ -1,56 +1,68 @@
 "use client";
 import { useState } from "react";
+import { useEffect } from "react";
+import Board from "./components/Board";
+import ModeSelect from "./components/ModeSelect";
+import PlayerInfo from "./components/PlayerInfo";
 
 export default function TicTacToePage() {
-  interface Dictionary<T> {
-    [key: string]: T;
+  const [gameMode, setGameMode] = useState<string>("2local");
+  const [player1Symbol, setPlayer1Symbol] = useState<string>("X");
+  const [player2Symbol, setPlayer2Symbol] = useState<string>("O");
+  const [player1Name, setPlayer1Name] = useState<string>("Player 1");
+  const [player2Name, setPlayer2Name] = useState<string>("Player 2");
+  const [player1Wins, setPlayer1Wins] = useState<number>(0);
+  const [player2Wins, setPlayer2Wins] = useState<number>(0);
+  const [draws, setDraws] = useState<number>(0);
+
+  if (gameMode === "") {
+    return <ModeSelect onSelect={setGameSettings} />;
   }
 
-  //player interface
-  //   interface Player {
-  //     name: string;
-  //     score: number;
-  //     symbol: string;
-  //   }
-  //   const [players, setPlayers] = useState<Player[]>([
-  //     { name: "Player 1", score: 0, symbol: "X" },
-  //     { name: "Player 2", score: 0, symbol: "O" },
-  //   ]);
-  const [board, setBoard] = useState<Dictionary<string>>({
-    a1: "",
-    a2: "",
-    a3: "",
-    b1: "",
-    b2: "",
-    b3: "",
-    c1: "",
-    c2: "",
-    c3: "",
-  });
-
-  const handleClick = (key: string) => {
-    setBoard({ ...board, [key]: "X" });
+  const setGameSettings = (
+    mode: string,
+    player1: string,
+    player2: string,
+    player1Symbol: string,
+    player2Symbol: string
+  ) => {
+    setGameMode(mode);
+    setPlayer1Name(player1);
+    setPlayer2Name(player2);
+    setPlayer1Symbol(player1Symbol);
+    setPlayer2Symbol(player2Symbol);
   };
 
+  const handleEnd = (winner: number) => {
+    if (winner === 1) {
+      setPlayer1Wins(player1Wins + 1);
+    } else if (winner === 2) {
+      setPlayer2Wins(player2Wins + 1);
+    } else {
+      setDraws(draws + 1);
+    }
+  };
   return (
-    <div className="grid grid-cols-3 gap-1 h-full bg-yellow-300 text-center">
-      {Object.keys(board).map((key) => (
-        <div
-          key={key}
-          className={`border bg-slate-100 border-black h-20 ${
-            board[key] === "" ? "hover:bg-red-900" : "bg-yellow-300"
-          } delay-0`}
-          onClick={() => {
-            if (board[key] != "") {
-              console.log("virkar ekki");
-            } else {
-              handleClick(key);
-            }
-          }}
-        >
-          {board[key]}
+    <div>
+      <div className="justify-center">
+        <Board
+          handleEnd={handleEnd}
+          player1Symbol={player1Symbol}
+          player2Symbol={player2Symbol}
+        />
+        <div className="flex flex-wrap justify-center gap-6">
+          <PlayerInfo
+            playerSymbol={player1Symbol}
+            playerName={player1Name}
+            playerWins={player1Wins}
+          />
+          <PlayerInfo
+            playerSymbol={player2Symbol}
+            playerName={player2Name}
+            playerWins={player2Wins}
+          />
         </div>
-      ))}
+      </div>
     </div>
   );
 }
