@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useEffect } from "react";
 import Board from "./components/Board";
 import ModeSelect from "./components/ModeSelect";
 import PlayerInfo from "./components/PlayerInfo";
 
 export default function TicTacToePage() {
-  const [gameMode, setGameMode] = useState<string>("2local");
+  const [gameMode, setGameMode] = useState<string>("");
   const [player1Symbol, setPlayer1Symbol] = useState<string>("X");
   const [player2Symbol, setPlayer2Symbol] = useState<string>("O");
   const [player1Name, setPlayer1Name] = useState<string>("Player 1");
@@ -14,10 +13,6 @@ export default function TicTacToePage() {
   const [player1Wins, setPlayer1Wins] = useState<number>(0);
   const [player2Wins, setPlayer2Wins] = useState<number>(0);
   const [draws, setDraws] = useState<number>(0);
-
-  if (gameMode === "") {
-    return <ModeSelect onSelect={setGameSettings} />;
-  }
 
   const setGameSettings = (
     mode: string,
@@ -32,6 +27,9 @@ export default function TicTacToePage() {
     setPlayer1Symbol(player1Symbol);
     setPlayer2Symbol(player2Symbol);
   };
+  if (gameMode === "") {
+    return <ModeSelect onSelect={setGameSettings} />;
+  }
 
   const handleEnd = (winner: number) => {
     if (winner === 1) {
