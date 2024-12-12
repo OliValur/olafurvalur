@@ -38,11 +38,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Nav />
-        <div
-          className="flex justify-center bg-cover bg-center bg-opacity-100 h-screen"
-          style={{ backgroundImage: "url(/background.jpg)" }}
-        >
-          <div className="w-full max-w-3xl px-4 py-8  ">{children}</div>
+        <div className="bg-black flex justify-center  h-screen ">
+          <div className=" w-full max-w-3xl px-4 py-8  ">{children}</div>
         </div>
       </body>
     </html>

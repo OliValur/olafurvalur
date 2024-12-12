@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Nav() {
   return (
-    <div className="flex bg-orange-400  items-center h-16">
+    <div className="flex bg-neutral-200  items-center h-16">
       <div className="flex-1 basis-1/4 text-left">
         <Link className="hover:font-bold" href="/">
           Home
@@ -14,8 +14,8 @@ export default function Nav() {
         <Link className="hover:font-bold" href="/tictactoe">
           Tic Tac Toe
         </Link>
-        <Link className="hover:font-bold" href="/about">
-          About
+        <Link className="hover:font-bold" href="/ski">
+          Skíði
         </Link>
       </div>
     </div>

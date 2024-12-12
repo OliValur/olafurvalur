@@ -27,6 +27,7 @@ export default function TicTacToePage() {
     setPlayer1Symbol(player1Symbol);
     setPlayer2Symbol(player2Symbol);
   };
+
   if (gameMode === "") {
     return <ModeSelect onSelect={setGameSettings} />;
   }

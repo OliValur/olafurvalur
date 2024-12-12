@@ -1,9 +1,11 @@
 import { fetchWeatherApi } from "openmeteo";
+import React from "react";
+import Image from "next/image";
 
-export default async function Weather() {
+export default async function Ski() {
   const params = {
-    latitude: 64.14,
-    longitude: -21.94,
+    latitude: 63.97505591290723,
+    longitude: -21.63843134328032,
     current: ["temperature_2m", "is_day", "weather_code"],
     timezone: "GMT",
     forecast_days: 1,
@@ -16,7 +18,6 @@ export default async function Weather() {
 
   // Attributes for timezone and location
   const utcOffsetSeconds = response.utcOffsetSeconds();
-
   const current = response.current()!;
 
   // Note: The order of weather variables in the URL query and the indices below need to match!
@@ -28,16 +29,25 @@ export default async function Weather() {
       weatherCode: current.variables(2)!.value(),
     },
   };
-  console.log(weatherData);
+  //Snow effect: https://wdrfree.com/264/css-snow-effects
+  //Bláfjöll: https://skidasvaedi.is/BlafjollCam/current.php
   return (
     <div>
-      <h1>Weather</h1>
-      <h2>Current weather {weatherData.current.temperature2m}</h2>
-      {weatherData.current.temperature2m > 0 ? (
-        <p>Það er ekki frost 😔</p>
-      ) : (
-        <p>Það er frost vúhú! 🥳⛷️🧊</p>
-      )}
+      <div className="h-screen snow text-white">
+        <h1>Weather</h1>
+        <h2>Current weather {weatherData.current.temperature2m}</h2>
+        {weatherData.current.temperature2m > 0 ? (
+          <p>Það er ekki frost 😔</p>
+        ) : (
+          <p>Það er frost vúhú! 🥳⛷️🧊</p>
+        )}
+      </div>
+      <Image
+        src="https://skidasvaedi.is/BlafjollCam/current.php"
+        alt="Bláfjöll"
+        width="1920"
+        height="1080"
+      />
     </div>
   );
 }
