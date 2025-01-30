@@ -1,13 +1,13 @@
 import Important from "@/components/homepage/Important";
 import Life from "@/components/homepage/Life";
-import Weather from "@/components/homepage/Weather";
+import CV from "@/components/homepage/CV";
 
 export default function Home() {
   return (
     <div>
       <Important />
+      <CV />
       <Life />
-      <Weather />
     </div>
   );
 }

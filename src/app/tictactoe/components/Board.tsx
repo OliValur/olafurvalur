@@ -31,11 +31,11 @@ export default function Board({
 
   const resetBoard = () => {
     setBoard({
-      a1: "X",
-      a2: "X",
+      a1: "",
+      a2: "",
       a3: "",
-      b1: "O",
-      b2: "O",
+      b1: "",
+      b2: "",
       b3: "",
       c1: "",
       c2: "",

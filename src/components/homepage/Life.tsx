@@ -1,7 +1,9 @@
+import CarouselComponent from "./CarouselComponent";
+
 export default function Life() {
   return (
-    <div id="life">
-      <h1>Life</h1>
+    <div>
+      <CarouselComponent />
     </div>
   );
 }

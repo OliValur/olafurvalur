@@ -38,8 +38,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Nav />
-        <div className="bg-black flex justify-center  h-screen ">
-          <div className=" w-full max-w-3xl px-4 py-8  ">{children}</div>
+        <div className="bg-slate-800   h-screen justify-center items-center text-white">
+          <div className=" w-full   ">{children}</div>
         </div>
       </body>
     </html>

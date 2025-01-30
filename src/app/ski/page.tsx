@@ -32,8 +32,8 @@ export default async function Ski() {
   //Snow effect: https://wdrfree.com/264/css-snow-effects
   //Bláfjöll: https://skidasvaedi.is/BlafjollCam/current.php
   return (
-    <div>
-      <div className="h-screen snow text-white">
+    <div className="flex flex-col items-center justify-center ">
+      <div className="flex bg-blue-300 h-96 snow text-black">
         <h1>Weather</h1>
         <h2>Current weather {weatherData.current.temperature2m}</h2>
         {weatherData.current.temperature2m > 0 ? (
